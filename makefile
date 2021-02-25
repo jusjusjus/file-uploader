@@ -8,7 +8,10 @@ docker.build:
 	docker-compose build
 
 docker.zip:
+	touch frontend/dummy
+	touch backend/dummy
 	zip -r file-uploader.zip \
 		docker-compose.yml \
 		nginx.conf \
-		.env
+		.env \
+		frontend/dummy backend/dummy

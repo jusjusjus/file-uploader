@@ -103,3 +103,5 @@ dist
 .tern-port
 
 *.zip
+backend/dummy
+frontend/dummy
