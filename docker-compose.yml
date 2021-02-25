@@ -1,16 +1,17 @@
 version: "3"
 services:
   frontend:
+    build: ./frontend
+    image: ${REGISTRY}/file-uploader_frontend:${VERSION}
     restart: on-failure
-    image: nginx:alpine
     ports:
       - 8080:80
     volumes:
-      - ${PWD}/frontend:/usr/share/nginx/html:ro
       - ${PWD}/nginx.conf:/etc/nginx/conf.d/default.conf:ro
 
   backend:
-    restart: on-failure
     build: ./backend
+    image: ${REGISTRY}/file-uploader_backend:${VERSION}
+    restart: on-failure
     ports:
       - 3030:3030

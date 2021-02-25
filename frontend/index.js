@@ -16,12 +16,12 @@ const form = document.getElementById('form');
 form.onsubmit = async (event) => {
   event.preventDefault();
   const { files } = event.srcElement[0];
-  post("http://localhost:3030/api/upload", files);
+  await post("/api/upload", files);
   updateFileList();
 };
 
 async function getUploadedFiles() {
-  const response = await fetch("http://localhost:3030/api/files");
+  const response = await fetch("/api/files");
   return response.json();
 }
 
@@ -43,4 +43,4 @@ async function updateFileList() {
   fileList.append(ul);
 }
 
-setInterval(updateFileList, 1000);
+setTimeout(updateFileList, 100);
