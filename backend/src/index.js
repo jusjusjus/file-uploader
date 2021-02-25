@@ -1,21 +1,37 @@
+const cors = require('cors');
 const fs = require('fs');
+const path = require('path');
 const express = require('express');
 const multer = require('multer');
-const upload = multer({ dest: './uploads' });
 
-fs.mkdirSync('./uploads', { recursive: true });
+const dropzone = './uploads';
+fs.mkdirSync(dropzone, { recursive: true });
 
 const app = express()
 const port = 3030
 
+app.use(cors());
+
+async function getUploadedFiles() {
+  const files = fs.readdirSync(dropzone);
+  return files.map((filename) => {
+    const filepath = path.join(dropzone, filename);
+    const stats = fs.statSync(filepath);
+    const megabytes = stats.size / (1024 * 1024);
+    return { filename, megabytes };
+  });
+}
+
+const upload = multer({ dest: dropzone });
 app.post('/api/upload', upload.single('file'), (req, res) => {
   const msg = 'file created';
-  console.log({ req });
   res.status(201).send(msg);
 });
 
-app.get('/', (req, res) => {
-  res.status(200).send('hello express!');
+app.get('/api/files', async (req, res) => {
+  const files = await getUploadedFiles();
+  console.log(files);
+  res.status(200).send(files);
 });
 
 app.listen(port, () => {
