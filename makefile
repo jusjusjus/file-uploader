@@ -7,6 +7,9 @@ docker.push: docker.build
 docker.build:
 	docker-compose build
 
+docker.clean:
+	docker-compose down
+
 docker.zip:
 	touch frontend/dummy
 	touch backend/dummy

@@ -4,6 +4,6 @@ MB = 1024 * 1024
 GB = 1024 * MB
 
 with open('large-file.bin', 'wb') as fp:
-    for _ in range(8):
+    for _ in range(5):
         fp.write(bytes(GB))
 
