@@ -6,8 +6,6 @@ services:
     restart: on-failure
     ports:
       - 8080:80
-    volumes:
-      - ${PWD}/nginx.conf:/etc/nginx/conf.d/default.conf:ro
 
   backend:
     build: ./backend

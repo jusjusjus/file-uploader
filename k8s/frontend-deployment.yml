@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-uploader.frontend
+  labels:
+    app: file-uploader.frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-uploader.frontend
+  template:
+    metadata:
+      labels:
+        app: file-uploader.frontend
+    spec:
+      containers:
+      - name: file-uploader-frontend
+        image: jusjusjus/file-uploader_frontend:latest
+        ports:
+        - containerPort: 80

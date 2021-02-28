@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-uploader.backend
+  labels:
+    app: file-uploader.backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: file-uploader.backend
+  template:
+    metadata:
+      labels:
+        app: file-uploader.backend
+    spec:
+      containers:
+      - name: file-uploader-backend
+        image: jusjusjus/file-uploader_backend:latest
+        ports:
+        - containerPort: 3030

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  labels:
+    app: file-uploader.backend.service
+spec:
+  selector:
+    app: file-uploader.backend
+  ports:
+    - protocol: TCP
+      port: 3030
+      targetPort: 3030

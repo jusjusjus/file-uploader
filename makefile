@@ -18,3 +18,12 @@ docker.zip:
 		nginx.conf \
 		.env \
 		frontend/dummy backend/dummy
+
+k8s.run:
+	kubectl apply -f k8s
+
+k8s.port-forward: k8s.run
+	kubectl port-forward services/frontend 8080:80
+
+k8s.clean:
+	kubectl delete -f k8s
